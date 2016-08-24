@@ -187,6 +187,9 @@ function Bootstrap3ElementModifierFn($log) {
 
       if ((elType === 'checkbox' || elType === 'radio') && el.parent()[0].nodeName.toLowerCase() === 'label') {
         correctEl = el.parent();
+        if (correctEl.hasClass("btn") && correctEl.parent().hasClass("btn-group")) {
+          correctEl = correctEl.parent();
+        }
       }
 
       return correctEl;
