@@ -561,7 +561,13 @@ function Bootstrap3ElementModifierFn($log) {
           withValidationStateIcon = angular.isDefined(correctElementToPlaceIconAfter);
         }
         frmGroupEl.addClass('has-error ' + (inputGroupEl.length > 0 || !withValidationStateIcon ? '' : 'has-feedback'));
-        insertAfter(getCorrectElementToPlaceHelpTextAfter(el, inputGroupEl), helpTextEl);
+
+        var helpBlockContainers = findWithClassElementDesc(frmGroupEl[0], 'help-block-cont');
+        if (helpBlockContainers.length > 0) {
+          helpBlockContainers[0].appendChild(helpTextEl[0]);
+        } else {
+          insertAfter(getCorrectElementToPlaceHelpTextAfter(el, inputGroupEl), helpTextEl);
+        }
 
         if (withValidationStateIcon) {
           var iconElText = '<span class="glyphicon glyphicon-remove form-control-feedback"></span>';
